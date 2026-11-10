@@ -1,0 +1,113 @@
+/* Duplet (public/fonts/duplet). woff2 is supported by all modern browsers. */
+
+@font-face {
+  font-family: "Duplet";
+  src: url("/fonts/duplet/Duplet-Thin.woff2") format("woff2");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Duplet";
+  src: url("/fonts/duplet/Duplet-ThinItalic.woff2") format("woff2");
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Duplet";
+  src: url("/fonts/duplet/Duplet-Extralight.woff2") format("woff2");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Duplet";
+  src: url("/fonts/duplet/Duplet-ExtralightItalic.woff2") format("woff2");
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Duplet";
+  src: url("/fonts/duplet/Duplet-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Duplet";
+  src: url("/fonts/duplet/Duplet-LightItalic.woff2") format("woff2");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Duplet";
+  src: url("/fonts/duplet/Duplet-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Duplet";
+  src: url("/fonts/duplet/Duplet-Italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Duplet";
+  src: url("/fonts/duplet/Duplet-Semibold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Duplet";
+  src: url("/fonts/duplet/Duplet-SemiboldItalic.woff2") format("woff2");
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Duplet";
+  src: url("/fonts/duplet/Duplet-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Duplet";
+  src: url("/fonts/duplet/Duplet-BoldItalic.woff2") format("woff2");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Duplet";
+  src: url("/fonts/duplet/Duplet-Extrabold.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Duplet";
+  src: url("/fonts/duplet/Duplet-ExtraboldItalic.woff2") format("woff2");
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}

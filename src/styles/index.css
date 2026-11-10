@@ -1,0 +1,35 @@
+@import "tailwindcss";
+@import "./fonts.css";
+
+@theme {
+  /* Fonts from the Figma design. Duplet is loaded in fonts.css.
+     Open Runde is not added yet, so font-display falls back to Duplet. */
+  --font-sans: "Duplet", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Open Runde", "Duplet", ui-sans-serif, system-ui, sans-serif;
+
+  /* SmallSmall colors */
+  --color-brand: #ffde11;
+  --color-ink: #222224;
+  --color-muted: #8d8d8d;
+  --color-subtle: #ababab;
+  --color-placeholder: #cdcbcc;
+  --color-line: #d7d7d6;
+  --color-field: #dbdbdb;
+  --color-success: #54b947;
+  --color-highlight: #fffcec;
+
+  /* Dashboard */
+  --color-canvas: #f6f6f6;
+  --color-edge: #e8e8e8;
+  --color-edge-strong: #e4e4e4;
+  --color-ink-soft: #58574f;
+  --color-nav-active: #eae8e7;
+  --color-brand-soft: #fff8cf;
+  --color-online: #68bd45;
+  --color-positive: #2d8708;
+  --color-positive-soft: #e1ffd5;
+  --color-warning: #b45209;
+  --color-warning-soft: #fffbeb;
+  --color-warning-line: #fde58a;
+  --color-danger: #ff0004;
+}
