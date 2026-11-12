@@ -7,7 +7,7 @@ import OtpInput from './OtpInput.jsx'
 
 const OTP_LENGTH = 6
 
-export default function OtpForm({ email }) {
+export default function OtpForm({ email, changeEmailHref = '/login' }) {
   const navigate = useNavigate()
   const [code, setCode] = useState('')
   const [formError, setFormError] = useState('')
@@ -43,7 +43,7 @@ export default function OtpForm({ email }) {
       <p className="mt-2 text-[14px] leading-normal text-muted">Enter the verification code sent to:</p>
       <div className="mt-1 flex items-center gap-[7px]">
         <span className="-ml-1 bg-highlight px-[7px] text-[14px] leading-[22px] text-ink">{email}</span>
-        <Link to="/login" aria-label="Change email address" className="shrink-0 hover:opacity-70">
+        <Link to={changeEmailHref} aria-label="Change email address" className="shrink-0 hover:opacity-70">
           <img src={pencil} alt="" width="12" height="12" />
         </Link>
       </div>
