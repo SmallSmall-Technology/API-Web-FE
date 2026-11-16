@@ -5,6 +5,8 @@ import Login from '@/pages/Login.jsx'
 import LoginOtp from '@/pages/LoginOtp.jsx'
 import SignUp from '@/pages/SignUp.jsx'
 import Onboarding from '@/pages/Onboarding.jsx'
+import ApiCredentials from '@/pages/ApiCredentials.jsx'
+import Webhooks from '@/pages/Webhooks.jsx'
 import NotFound from '@/pages/NotFound.jsx'
 
 export const router = createBrowserRouter([
@@ -27,6 +29,8 @@ export const router = createBrowserRouter([
     element: <DashboardLayout />,
     children: [
       { path: '/dashboard', element: <Onboarding /> },
+      { path: '/credentials', element: <ApiCredentials /> },
+      { path: '/webhooks', element: <Webhooks /> },
       { path: '*', element: <NotFound /> },
     ],
   },
