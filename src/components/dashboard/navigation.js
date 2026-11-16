@@ -17,7 +17,7 @@ import customerService from '@/assets/icons/customer-service.svg'
 import folders from '@/assets/icons/folders.svg'
 import settings from '@/assets/icons/settings.svg'
 
-// Sidebar links. Only /dashboard has a page so far; the rest show the
+// Sidebar links. Only /dashboard, /credentials and /webhooks have pages so far; the rest show the
 // "not found" page until they are built.
 export const mainNav = [
   {

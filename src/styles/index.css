@@ -6,6 +6,8 @@
      Open Runde is not added yet, so font-display falls back to Duplet. */
   --font-sans: "Duplet", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Open Runde", "Duplet", ui-sans-serif, system-ui, sans-serif;
+  /* API keys. JetBrains Mono is not bundled yet, so this falls back to the system monospace font. */
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   /* SmallSmall colors */
   --color-brand: #ffde11;
@@ -32,4 +34,6 @@
   --color-warning-soft: #fffbeb;
   --color-warning-line: #fde58a;
   --color-danger: #ff0004;
+  --color-info: #1d4ed8;
+  --color-info-soft: #eff6ff;
 }

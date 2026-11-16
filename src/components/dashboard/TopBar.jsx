@@ -1,15 +1,16 @@
-import { useId } from 'react'
-import bell from '@/assets/icons/bell.svg'
-import toggleOn from '@/assets/icons/toggle-on.svg'
-import { NotificationsPanel } from '@/features/notifications'
-import { useDropdown } from '@/hooks/useDropdown.js'
+import { useId } from "react";
+import bell from "@/assets/icons/bell.svg";
+import toggleOn from "@/assets/icons/toggle-on.svg";
+import toggleOff from "@/assets/icons/toggle-off.svg";
+import { NotificationsPanel } from "@/features/notifications";
+import { useDropdown } from "@/hooks/useDropdown.js";
 
 /** Bell with an unread count. Clicking it opens the notifications panel. */
 export function NotificationBell({ notifications, isLoading = false }) {
-  const { open, toggle, rootRef, triggerRef } = useDropdown()
-  const panelId = useId()
-  const count = notifications?.filter((item) => !item.read).length ?? 0
-  const label = count > 0 ? `Notifications, ${count} unread` : 'Notifications'
+  const { open, toggle, rootRef, triggerRef } = useDropdown();
+  const panelId = useId();
+  const count = notifications?.filter((item) => !item.read).length ?? 0;
+  const label = count > 0 ? `Notifications, ${count} unread` : "Notifications";
 
   return (
     <div ref={rootRef} className="relative">
@@ -28,7 +29,7 @@ export function NotificationBell({ notifications, isLoading = false }) {
             aria-hidden
             className="absolute -top-[7px] left-[11px] flex size-4 items-center justify-center rounded-full bg-danger text-[11px] leading-none font-semibold text-white"
           >
-            {count > 9 ? '9+' : count}
+            {count > 9 ? "9+" : count}
           </span>
         )}
       </button>
@@ -44,7 +45,7 @@ export function NotificationBell({ notifications, isLoading = false }) {
         />
       )}
     </div>
-  )
+  );
 }
 
 /** Pill that shows (and switches) whether the portal is pointed at live data. */
@@ -59,31 +60,25 @@ export function EnvironmentToggle({ isLive = true, onToggle }) {
     >
       <span
         className={`flex items-center gap-1.5 rounded-[10px] bg-canvas py-0.5 pr-[9px] pl-[7px] text-[14px]/[18px] ${
-          isLive ? 'text-positive' : 'text-muted'
+          isLive ? "text-positive" : "text-[#F79521]"
         }`}
       >
         {/* Only the "on" icon exists in the design; mirror and grey it for "off". */}
-        <img
-          src={toggleOn}
-          alt=""
-          width="20"
-          height="20"
-          className={isLive ? '' : '-scale-x-100 grayscale'}
-        />
-        {isLive ? 'Live' : 'Sandbox'}
+        <img src={isLive ? toggleOn : toggleOff} alt="" width="20" height="20" />
+        {isLive ? "Live" : "Sandbox"}
       </span>
     </button>
-  )
+  );
 }
 
 const statusStyles = {
-  operational: { dot: 'bg-online', text: 'All systems operational' },
-  degraded: { dot: 'bg-brand', text: 'Degraded performance' },
-  down: { dot: 'bg-danger', text: 'Service disruption' },
-}
+  operational: { dot: "bg-online", text: "All systems operational" },
+  degraded: { dot: "bg-brand", text: "Degraded performance" },
+  down: { dot: "bg-danger", text: "Service disruption" },
+};
 
-export function ApiStatusPill({ status = 'operational' }) {
-  const style = statusStyles[status] ?? statusStyles.operational
+export function ApiStatusPill({ status = "operational" }) {
+  const style = statusStyles[status] ?? statusStyles.operational;
 
   return (
     <div title={style.text} className="rounded-[12px] border border-edge-strong bg-white px-[3px] py-0.5">
@@ -93,18 +88,11 @@ export function ApiStatusPill({ status = 'operational' }) {
         <span className="sr-only">: {style.text}</span>
       </span>
     </div>
-  )
+  );
 }
 
 /** Top row of the main panel. */
-export default function TopBar({
-  notifications,
-  notificationsLoading,
-  isLive,
-  onToggleLive,
-  apiStatus,
-  onOpenMenu,
-}) {
+export default function TopBar({ notifications, notificationsLoading, isLive, onToggleLive, apiStatus, onOpenMenu }) {
   return (
     <div className="flex items-center gap-1.5 border-b border-edge-strong py-3.5 pr-[21px] pl-4">
       <button
@@ -124,5 +112,5 @@ export default function TopBar({
       <EnvironmentToggle isLive={isLive} onToggle={onToggleLive} />
       <ApiStatusPill status={apiStatus} />
     </div>
-  )
+  );
 }

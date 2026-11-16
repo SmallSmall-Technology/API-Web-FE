@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
-import { useNavigate } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import { login } from '../api/login.js'
 
 const inputClass =
@@ -75,9 +75,15 @@ export default function SignInForm() {
         Forgot password?
       </a>
 
+      <p className="mt-[23px] text-[16px] leading-normal text-ink">
+        Don’t have an account?{' '}
+        <Link to="/signup" className="font-semibold underline">
+          Sign up
+        </Link>
+      </p>
+
       <p className="mt-[23px] max-w-[424px] text-[14px] leading-normal text-ink">
         Access to the SmallSmall API Gateway is restricted to authorized enterprise partners.
-        Credentials are provisioned directly by the SmallSmall Partnership Team.
       </p>
     </div>
   )
