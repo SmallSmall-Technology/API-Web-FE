@@ -5,6 +5,7 @@ import { Card } from '@/components/ui/Card.jsx'
 import PageHeader from '@/components/ui/PageHeader.jsx'
 import {
   AddEndpointModal,
+  EditEndpointModal,
   EndpointsCard,
   createWebhookEndpoint,
   EventCatalogCard,
@@ -12,6 +13,7 @@ import {
   getWebhookEndpoints,
   getWebhookEvents,
   setWebhookEventEnabled,
+  updateWebhookEndpoint,
 } from '@/features/webhooks'
 import paperPlaneIcon from '@/assets/icons/paper-plane.svg'
 import plusIcon from '@/assets/icons/plus-15.svg'
@@ -42,6 +44,8 @@ export default function Webhooks() {
   const tabsId = useId()
   const [activeTab, setActiveTab] = useState('events')
   const [addOpen, setAddOpen] = useState(false)
+  // The endpoint being edited; the edit dialog is open while this is set.
+  const [editing, setEditing] = useState(null)
 
   const endpoints = useQuery({ queryKey: ['webhook-endpoints'], queryFn: getWebhookEndpoints })
   const events = useQuery({ queryKey: ['webhook-events'], queryFn: getWebhookEvents })
@@ -76,6 +80,19 @@ export default function Webhooks() {
     addEndpoint.reset()
   }
 
+  const editEndpoint = useMutation({
+    mutationFn: updateWebhookEndpoint,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['webhook-endpoints'] })
+      setEditing(null)
+    },
+  })
+
+  function closeEdit() {
+    setEditing(null)
+    editEndpoint.reset()
+  }
+
   return (
     <>
       <PageHeader
@@ -98,8 +115,8 @@ export default function Webhooks() {
 
       <div className="mt-[35px]">
         <QueryState query={endpoints} errorMessage="Could not load your endpoints.">
-          {/* TODO: pass onRefresh and onEdit once those flows and endpoints exist. */}
-          {(data) => <EndpointsCard endpoints={data} />}
+          {/* TODO: pass onRefresh once that flow and endpoint exist. */}
+          {(data) => <EndpointsCard endpoints={data} onEdit={setEditing} />}
         </QueryState>
       </div>
 
@@ -144,14 +161,20 @@ export default function Webhooks() {
         </div>
       </div>
 
-      {/* TODO: new endpoints go to sandbox until the top bar's Live/Sandbox toggle is shared with pages,
-          and "Continue" may lead to more steps (choose events, verify handshake) once those are designed. */}
       <AddEndpointModal
         open={addOpen}
         onClose={closeAdd}
-        onSubmit={(url) => addEndpoint.mutate({ url, environment: 'sandbox' })}
+        onSubmit={({ url, environment }) => addEndpoint.mutate({ url, environment })}
         isSubmitting={addEndpoint.isPending}
         error={addEndpoint.error}
+      />
+
+      <EditEndpointModal
+        endpoint={editing}
+        onClose={closeEdit}
+        onSubmit={(changes) => editEndpoint.mutate(changes)}
+        isSubmitting={editEndpoint.isPending}
+        error={editEndpoint.error}
       />
     </>
   )
