@@ -5,11 +5,13 @@ import { Card } from '@/components/ui/Card.jsx'
 import PageHeader from '@/components/ui/PageHeader.jsx'
 import {
   AddEndpointModal,
+  DeliveriesCard,
   EditEndpointModal,
   EndpointsCard,
   createWebhookEndpoint,
   EventCatalogCard,
   WebhookTabs,
+  getWebhookDeliveries,
   getWebhookEndpoints,
   getWebhookEvents,
   setWebhookEventEnabled,
@@ -49,6 +51,12 @@ export default function Webhooks() {
 
   const endpoints = useQuery({ queryKey: ['webhook-endpoints'], queryFn: getWebhookEndpoints })
   const events = useQuery({ queryKey: ['webhook-events'], queryFn: getWebhookEvents })
+  // Only fetched once the "Recent deliveries" tab is opened.
+  const deliveries = useQuery({
+    queryKey: ['webhook-deliveries'],
+    queryFn: getWebhookDeliveries,
+    enabled: activeTab === 'deliveries',
+  })
 
   // Flip the switch straight away and roll back if the request fails.
   const toggleEvent = useMutation({
@@ -135,7 +143,7 @@ export default function Webhooks() {
           aria-labelledby={`${tabsId}-tab-${activeTab}`}
           className="mt-[33px]"
         >
-          {activeTab === 'events' ? (
+          {activeTab === 'events' && (
             <>
               <QueryState query={events} errorMessage="Could not load the event catalog.">
                 {(data) => (
@@ -152,8 +160,16 @@ export default function Webhooks() {
                 </p>
               )}
             </>
-          ) : (
-            // TODO: build these tabs once they are designed.
+          )}
+
+          {activeTab === 'deliveries' && (
+            <QueryState query={deliveries} errorMessage="Could not load recent deliveries.">
+              {(data) => <DeliveriesCard deliveries={data} />}
+            </QueryState>
+          )}
+
+          {activeTab === 'payload' && (
+            // TODO: build this tab once it is designed.
             <Card>
               <p className="px-4 py-10 text-center text-[14px]/[18px] text-subtle">Coming soon</p>
             </Card>
