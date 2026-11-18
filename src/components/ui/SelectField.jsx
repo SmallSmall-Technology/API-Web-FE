@@ -1,9 +1,17 @@
 import chevronDown from '@/assets/icons/chevron-down.svg'
-import { fieldBoxClass, fieldLabelClass } from './TextField.jsx'
+import angleSmallDown from '@/assets/icons/angle-small-down-15.svg'
+import { fieldSizes } from './fieldStyles.js'
+
+// Chevron and select padding per size, as in the designs.
+const chevrons = {
+  sm: { src: chevronDown, size: 20, position: 'right-[11px]', padding: 'pr-10' },
+  md: { src: angleSmallDown, size: 15, position: 'right-[22px]', padding: 'pr-12 pl-[17px]' },
+}
 
 /**
  * Label + native dropdown with the design's chevron.
  * `options` is a list of { value, label }. `placeholder` shows while nothing is picked.
+ * `size` is "sm" (default, auth forms) or "md" (dashboard dialogs).
  */
 export default function SelectField({
   id,
@@ -11,19 +19,23 @@ export default function SelectField({
   options,
   placeholder,
   value,
+  size = 'sm',
   className = '',
   ...selectProps
 }) {
+  const classes = fieldSizes[size] ?? fieldSizes.sm
+  const chevron = chevrons[size] ?? chevrons.sm
+
   return (
     <div className={className}>
-      <label htmlFor={id} className={fieldLabelClass}>
+      <label htmlFor={id} className={classes.label}>
         {label}
       </label>
-      <div className="relative mt-2.5">
+      <div className={`relative ${classes.offset}`}>
         <select
           id={id}
           value={value}
-          className={`${fieldBoxClass} cursor-pointer appearance-none pr-10 ${value ? '' : 'text-placeholder'}`}
+          className={`${classes.box} cursor-pointer appearance-none ${chevron.padding} ${value ? '' : classes.placeholderText}`}
           {...selectProps}
         >
           {placeholder && (
@@ -38,11 +50,11 @@ export default function SelectField({
           ))}
         </select>
         <img
-          src={chevronDown}
+          src={chevron.src}
           alt=""
-          width="20"
-          height="20"
-          className="pointer-events-none absolute top-1/2 right-[11px] -translate-y-1/2"
+          width={chevron.size}
+          height={chevron.size}
+          className={`pointer-events-none absolute top-1/2 -translate-y-1/2 ${chevron.position}`}
         />
       </div>
     </div>
